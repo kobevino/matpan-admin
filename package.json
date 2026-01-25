@@ -10,6 +10,9 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "prepare": "lefthook install"
   },
   "devDependencies": {
@@ -17,13 +20,19 @@
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@tailwindcss/vite": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.0.10",
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
+    "jsdom": "^27.4.0",
     "lefthook": "^2.0.15",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.20",

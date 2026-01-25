@@ -51,6 +51,20 @@ This project follows Test-Driven Development. When implementing any feature:
 4. **Refactor** - Clean up code while keeping tests green
 5. **Verify** - Run `pnpm lint` and `pnpm build` before completion
 6. **E2E testing** - Run `pnpm test:e2e` to verify feature works end-to-end
+7. **MCP Playwright testing** - Use MCP Playwright tools to manually verify UI in browser
+
+### MCP Playwright Testing
+
+After implementing a feature, use MCP Playwright tools to verify the UI works correctly:
+
+1. Start dev server: `pnpm dev` (run in background)
+2. Navigate to page: `mcp__playwright__browser_navigate` with `http://localhost:3000`
+3. Verify page content: `mcp__playwright__browser_snapshot` to check elements
+4. Test interactions: `mcp__playwright__browser_click` to test navigation/buttons
+5. Take screenshots if needed: `mcp__playwright__browser_take_screenshot`
+6. Close browser: `mcp__playwright__browser_close`
+
+This ensures visual verification beyond automated tests.
 
 ### Test file conventions
 

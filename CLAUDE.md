@@ -5,9 +5,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm dev      # Start development server
-pnpm build    # TypeScript check and production build
-pnpm preview  # Preview production build
+pnpm dev       # Start development server
+pnpm build     # TypeScript check and production build
+pnpm preview   # Preview production build
+pnpm lint      # Check linting and formatting
+pnpm lint:fix  # Fix linting and formatting issues
+pnpm format    # Format all files
 ```
 
 ## Tech Stack
@@ -18,6 +21,8 @@ pnpm preview  # Preview production build
 - **TanStack React Query** for server state management
 - **Jotai** for client state management
 - **Axios** for HTTP requests
+- **Biome** for linting and formatting
+- **Lefthook** for git hooks (pre-commit runs biome check)
 
 ## Architecture
 

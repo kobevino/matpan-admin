@@ -4,3 +4,8 @@ pre-commit:
       glob: "*.{js,ts,jsx,tsx,json}"
       run: pnpm biome check --write --staged --no-errors-on-unmatched
       stage_fixed: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}

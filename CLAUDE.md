@@ -22,7 +22,8 @@ pnpm format    # Format all files
 - **Jotai** for client state management
 - **Axios** for HTTP requests
 - **Biome** for linting and formatting
-- **Lefthook** for git hooks (pre-commit runs biome check)
+- **Commitlint** for commit message validation (conventional commits)
+- **Lefthook** for git hooks (pre-commit: biome, commit-msg: commitlint)
 
 ## Architecture
 

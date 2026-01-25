@@ -14,6 +14,8 @@ pnpm format        # Format all files
 pnpm test          # Run tests in watch mode
 pnpm test:run      # Run tests once
 pnpm test:coverage # Run tests with coverage
+pnpm test:e2e      # Run E2E tests
+pnpm test:e2e:ui   # Run E2E tests with UI mode
 ```
 
 ## Tech Stack
@@ -27,7 +29,8 @@ pnpm test:coverage # Run tests with coverage
 - **Biome** for linting and formatting
 - **Commitlint** for commit message validation (conventional commits)
 - **Lefthook** for git hooks (pre-commit: biome, commit-msg: commitlint)
-- **Vitest** for testing with React Testing Library
+- **Vitest** for unit testing with React Testing Library
+- **Playwright** for E2E testing
 
 ## Architecture
 
@@ -36,6 +39,7 @@ pnpm test:coverage # Run tests with coverage
 - `src/index.css` - Global styles with Tailwind import
 - `src/test/setup.ts` - Vitest setup file
 - `src/test/test-utils.tsx` - Custom render with providers
+- `e2e/` - Playwright E2E test files
 
 ## Development Workflow (TDD)
 
@@ -46,8 +50,10 @@ This project follows Test-Driven Development. When implementing any feature:
 3. **Implement feature** - Write minimal code to make tests pass
 4. **Refactor** - Clean up code while keeping tests green
 5. **Verify** - Run `pnpm lint` and `pnpm build` before completion
+6. **E2E testing** - Run `pnpm test:e2e` to verify feature works end-to-end
 
 ### Test file conventions
 
-- Test files: `*.test.tsx` or `*.test.ts` (colocated with source)
+- Unit tests: `*.test.tsx` or `*.test.ts` (colocated with source)
+- E2E tests: `e2e/*.spec.ts`
 - Use `src/test/test-utils.tsx` for rendering components (includes QueryClientProvider)

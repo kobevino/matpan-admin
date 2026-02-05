@@ -1,3 +1,8 @@
+---
+description: Create a UI component in /components/ui
+argument-hint: Component name | Component summary
+---
+
 # UI Component: $ARGUMENTS
 
 Create a reusable UI component following project conventions.
@@ -101,4 +106,4 @@ describe('Button', () => {
 4. Add styles in `index.css` if needed
 5. Run `pnpm test:run` to verify tests pass
 6. Run `pnpm lint` to check code quality
-7. Verify with MCP Playwright if visual verification is needed
+7. **Launch ui-ux-reviewer agent**: Use the Task tool with `subagent_type=ui-ux-reviewer` to perform comprehensive UI/UX and accessibility review of the new component

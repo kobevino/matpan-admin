@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { type RenderOptions, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider as JotaiProvider } from 'jotai';
 import type { ReactElement, ReactNode } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -28,7 +29,9 @@ function AllTheProviders({
   const queryClient = createTestQueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
+      <JotaiProvider>
+        <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
+      </JotaiProvider>
     </QueryClientProvider>
   );
 }

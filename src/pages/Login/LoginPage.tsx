@@ -1,48 +1,27 @@
-import { useSetAtom } from 'jotai';
 import { type FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { userAtom } from '@/store/auth';
-
-const MOCK_CREDENTIALS = {
-  email: 'admin@matpan.com',
-  password: 'admin123',
-};
-
-const MOCK_USER = {
-  email: 'admin@matpan.com',
-  name: '관리자',
-};
+import { useLoginMutation } from '@/queries/useAuthMutation';
 
 export function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const setUser = useSetAtom(userAtom);
-  const navigate = useNavigate();
+  const mutation = useLoginMutation();
 
-  const isFormValid = email.length > 0 && password.length > 0;
-
-  const isValidEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const isFormValid = adminId.length > 0 && password.length > 0;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setError('');
-
-    if (!isValidEmail(email)) {
-      setError('올바른 이메일 형식이 아닙니다.');
-      return;
-    }
-
-    if (email === MOCK_CREDENTIALS.email && password === MOCK_CREDENTIALS.password) {
-      setUser(MOCK_USER);
-      navigate('/');
-    } else {
-      setError('이메일 또는 비밀번호가 올바르지 않습니다.');
-    }
+    mutation.mutate(
+      { admin_id: adminId, password },
+      {
+        onError: () => {
+          setError('아이디 또는 비밀번호가 올바르지 않습니다.');
+        },
+      },
+    );
   };
 
   return (
@@ -51,12 +30,12 @@ export function LoginPage() {
         <h1 className="text-2xl font-bold text-center mb-6">로그인</h1>
         <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           <Input
-            label="이메일"
-            id="email"
-            type="email"
-            placeholder="이메일을 입력하세요"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            label="아이디"
+            id="adminId"
+            type="text"
+            placeholder="아이디를 입력하세요"
+            value={adminId}
+            onChange={(e) => setAdminId(e.target.value)}
             required
           />
           <Input
@@ -69,8 +48,8 @@ export function LoginPage() {
             required
           />
           {error && <p className="text-sm text-red-500">{error}</p>}
-          <Button type="submit" disabled={!isFormValid} className="w-full">
-            로그인
+          <Button type="submit" disabled={!isFormValid || mutation.isPending} className="w-full">
+            {mutation.isPending ? '로그인 중...' : '로그인'}
           </Button>
         </form>
       </div>

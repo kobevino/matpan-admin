@@ -1,0 +1,19 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ],
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$(git rev-parse --show-toplevel)/.claude/hooks/english-teacher.sh\"",
+            "statusMessage": "Analyzing English..."
+          }
+        ]
+      }
+    ]
+  }
+}

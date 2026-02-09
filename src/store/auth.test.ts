@@ -15,7 +15,7 @@ describe('auth store', () => {
 
   it('isAuthenticatedAtom should be true when user exists', () => {
     const store = createStore();
-    store.set(userAtom, { email: 'test@test.com', name: 'Test User' });
+    store.set(userAtom, { adminId: 'testadmin' });
     expect(store.get(isAuthenticatedAtom)).toBe(true);
   });
 });

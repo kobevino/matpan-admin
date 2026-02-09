@@ -8,21 +8,21 @@ describe('Header', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument();
   });
 
-  it('displays user name when logged in', () => {
-    const user = { email: 'test@test.com', name: 'Test User' };
+  it('displays admin id when logged in', () => {
+    const user = { adminId: 'testadmin' };
     render(<Header user={user} onLogout={() => {}} />);
-    expect(screen.getByText('Test User')).toBeInTheDocument();
+    expect(screen.getByText('testadmin')).toBeInTheDocument();
   });
 
   it('displays logout button when logged in', () => {
-    const user = { email: 'test@test.com', name: 'Test User' };
+    const user = { adminId: 'testadmin' };
     render(<Header user={user} onLogout={() => {}} />);
     expect(screen.getByRole('button', { name: '로그아웃' })).toBeInTheDocument();
   });
 
   it('calls onLogout when logout button clicked', async () => {
     const handleLogout = vi.fn();
-    const user = { email: 'test@test.com', name: 'Test User' };
+    const user = { adminId: 'testadmin' };
     const { user: userEvent } = render(<Header user={user} onLogout={handleLogout} />);
 
     await userEvent.click(screen.getByRole('button', { name: '로그아웃' }));

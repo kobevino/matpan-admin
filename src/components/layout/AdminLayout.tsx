@@ -1,15 +1,24 @@
 import { useAtom } from 'jotai';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { userAtom } from '@/store/auth';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 
 export function AdminLayout() {
   const [user, setUser] = useAtom(userAtom);
+  const navigate = useNavigate();
+
+  const accessToken = localStorage.getItem('accessToken');
 
   const handleLogout = () => {
+    localStorage.removeItem('accessToken');
     setUser(null);
+    navigate('/login');
   };
+
+  if (!accessToken) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="flex min-h-screen">
